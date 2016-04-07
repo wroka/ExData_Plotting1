@@ -1,4 +1,5 @@
 # plot4
+library(data.table)
 library(lubridate)
 library(dplyr)
 ## download data file
@@ -7,7 +8,7 @@ download.file(URL, destfile="./Dataset.zip")
 ## Unzip files to working folder
 unzip(zipfile="./Dataset.zip")
 ## read txt file into table 
-data_temp <- read.table("household_power_consumption.txt", sep = ";", header = TRUE, stringsAsFactors = FALSE, na.strings = "?", dec = ".")
+data_temp <- fread("household_power_consumption.txt", sep = ";", header = TRUE, stringsAsFactors = FALSE, na.strings = "?", dec = ".")
 ## subset to only include 2/1/2007 and 2/2/2007
 plot4 <- subset(data_temp, Date %in% c("1/2/2007","2/2/2007"))
 # day is combined date and time as x-axis
